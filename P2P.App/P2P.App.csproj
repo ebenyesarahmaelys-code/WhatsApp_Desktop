@@ -8,6 +8,7 @@
     <Nullable>enable</Nullable>
     <AssemblyName>WhatsAppP2P</AssemblyName>
     <RootNamespace>P2P.App</RootNamespace>
+    <RollForward>Major</RollForward>
   </PropertyGroup>
 
   <ItemGroup>
