@@ -76,3 +76,21 @@ public sealed class Database
         if (Sanitizer.NormalizeId(id) != id)
             throw new ArgumentException("Identifiant invalide.", paramName);
     }
+
+    public string GetOrCreateSetting(string key, Func<string> factory)
+    {
+        using var connection = Open();
+
+        using (var insert = connection.CreateCommand())
+        {
+            insert.CommandText = "INSERT INTO Settings (SettingKey, SettingValue) VALUES ($k, $v) ON CONFLICT(SettingKey) DO NOTHING";
+            insert.Parameters.AddWithValue("$k", key);
+            insert.Parameters.AddWithValue("$v", factory());
+            insert.ExecuteNonQuery();
+        }
+
+        using var select = connection.CreateCommand();
+        select.CommandText = "SELECT SettingValue FROM Settings WHERE SettingKey = $k";
+        select.Parameters.AddWithValue("$k", key);
+        return (string)select.ExecuteScalar()!;
+    }
