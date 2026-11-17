@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>WhatsAppP2P</AssemblyName>
+    <RootNamespace>P2P.App</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\P2P.Core\P2P.Core.csproj" />
+    <ProjectReference Include="..\P2P.Network\P2P.Network.csproj" />
+    <ProjectReference Include="..\P2P.Data\P2P.Data.csproj" />
+  </ItemGroup>
+
+</Project>
